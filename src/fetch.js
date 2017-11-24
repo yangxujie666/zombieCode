@@ -1,0 +1,706 @@
+import Mock from 'mockjs';
+console.log(Mock)
+
+//获取首页地图数据
+
+Mock.mock('/zombie/indexPage/getMapData',{
+	"code":"1",
+    "msg":"描述信息",
+	'data':{
+        "suspect":"@integer(0,1000)",
+        "highrisk":"@integer(0,1000)",
+        "mapData|5-34":[
+            {
+                "name":"@province",
+                "value":"@integer(20,1000)",
+                "value1":"@float(20,100)"
+            }
+        ]
+    }
+})
+
+
+//获取最新疑似僵尸企业列表页数据
+
+Mock.mock('/zombie/latestSuspected/getListData',{
+    "code":"1",
+    "msg":"描述信息",
+    "page":1,
+    "totalRecord":100,
+    'data|1-6':[
+        {
+            "entId":"@id",
+            "name":"@ctitle",
+            "imgUrl":"",
+            "charge":"@cname",
+            "area":"@province",
+            "areaId":"@id",
+            "industry|1":["制造业","纺织业","加工业","销售业","服务业"],
+            "industryId":"@id",
+            "productService|1":["钢铁生产","服装生产","电子生产","食品生产"],
+            "address":"@county(true)",
+            "status|1":["存续","缓存","开业","未开业"],
+            "ratio":"@float(0,100)",
+            "ratioNum":1,
+            "favorite":"@boolean",
+            "time":"@date(yyyy/MM/dd)"
+        }
+    ]
+})
+
+//获取列表页筛选条件数据-省份
+
+Mock.mock('/zombie/latestSuspected/getScreenConditionsProviceData',{
+    "code":"1",
+    "msg":"描述信息",
+    "page":1,
+    "totalRecord":100,
+    "data|5-34":[
+        {
+            "name":"@province",
+            "id":"@id"
+        }
+    ]
+})
+
+//获取列表页筛选条件数据-行业
+
+Mock.mock('/zombie/latestSuspected/getScreenConditionsIndustryData',{
+    "code":"1",
+    "msg":"描述信息",
+    "page":1,
+    "totalRecord":100,
+    "data":[
+        {
+            "name|1":["农副食品加工业","制造业","纺织业","加工业","销售业","服务业"],
+            "id":"@id"
+        }
+    ]
+})
+
+//获取高风险疑似僵尸企业列表页数据
+
+Mock.mock('/zombie/highriskSuspected/getListData',{
+    "code":"1",
+    "msg":"描述信息",
+    "page":1,
+    "totalRecord":100,
+    "data|1-6":[
+        {
+            "entId":"@id",
+            "name":"@ctitle",
+            "imgUrl":"",
+            "charge":"@cname",
+            "area":"@province",
+            "industry|1":["制造业","纺织业","加工业","销售业","服务业"],
+            "productService|1":["钢铁生产","服装生产","电子生产","食品生产"],
+            "address":"@county(true)",
+            "status|1":["存续","缓存","开业","未开业"],
+            "ratio":"@float(0,100)",
+            "ratioNum":1,
+            "favorite":"@boolean",
+            "areaId":"@id",
+            "industryId":"@id"
+        }
+    ]
+})
+
+//获取高风险疑似僵尸企业-附近疑似僵尸企业数据
+
+Mock.mock('/zombie/latestSuspected/getNearIndustryData',{
+    "code":"1",
+    "msg":"描述信息",
+    "page":1,
+    "totalRecord":8,
+    "data|1-8":[
+        {
+            "id":"@id",
+            "name":"@ctitle",
+            "imgUrl":"static/img/img2.jpg"
+        }
+    ]
+})
+
+//获取高风险疑似僵尸企业-最新疑似僵尸企业数据
+
+Mock.mock('/zombie/latestSuspected/getNewIndustryData',{
+    "code":"1",
+    "msg":"描述信息",
+    "page":1,
+    "totalRecord":8,
+    "data|1-8":[
+        {
+            "id":"@id",
+            "name":"@ctitle",
+            "imgUrl":"static/img/img2.jpg"
+        }
+    ]
+})
+
+//僵尸企业统计分析页-疑似僵尸企业数量走势
+
+Mock.mock('/zombie/analysis/getNumMove',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "xAxisData":[
+            "2月",
+            "3月",
+            "4月",
+            "5月",
+            "6月"
+        ],
+        "seriesdata":[
+            [220,118,120,240,360],[280,318,180,140,260]
+        ]
+    }
+})
+
+//僵尸企业统计分析页-僵尸企业所属行业分析
+
+Mock.mock('/zombie/analysis/getIndustryAnalysis',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "legendData":[
+            "餐饮",
+            "制造业",
+            "互联网",
+            "农业",
+            "服务业",
+            "教育",
+            "其他"
+        ],
+        "seriesdata":[
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"餐饮"
+            },
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"制造业"
+            },
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"互联网"
+            },
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"农业"
+            },
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"服务业"
+            },
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"教育"
+            },
+            {
+                "value":"@integer(0,100)",
+                "value2":"@integer(10000,12000)",
+                "value3":"@integer(0,100)",
+                "value4":"@float(0,100)",
+                "name|1":"其他"
+            }
+        ]
+    }
+})
+
+//僵尸企业统计分析页-僵尸企业数量(地图)
+
+Mock.mock('/zombie/analysis/getMapData',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "mapData|5-34":[
+            {
+                "name":"@province",
+                "value":"@integer(0,1000)",
+                "value1":"@float(0,100)"
+            }
+        ],
+        "mapRisk":{
+            "highRisk":"@integer(10,50)",
+            "mediumRisk":"@integer(100,200)",
+            "lowRisk":"@integer(1000,9000)"
+        }
+    }
+})
+
+//僵尸企业统计分析页-僵尸企业注册时间分析
+
+Mock.mock('/zombie/analysis/getRegisterData',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "compontPieData":[
+            440,
+            330,
+            150,
+            80
+        ]
+    }
+})
+
+//僵尸企业统计分析页-僵尸企业类型分析
+
+Mock.mock('/zombie/analysis/getTypeAnalysis',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "legendData":[
+            "私营企业",
+            "国有企业",
+            "联营企业",
+            "外商投资",
+            "其他企业"
+        ],
+        "seriesData":[
+            {
+                "value":"@integer(10,50)",
+                "value1":"@integer(0,100)",
+                "value2":"@integer(0,100)",
+                "value3":"@integer(0,100)",
+                "value4|1":["经济活跃度","法律问题","企业问题"],
+                "name":"私营企业"
+            },
+            {
+                "value":"@integer(10,50)",
+                "value1":"@integer(0,100)",
+                "value2":"@integer(0,100)",
+                "value3":"@integer(0,100)",
+                "value4|1":["经济活跃度","法律问题","企业问题"],
+                "name":"国有企业"
+            },
+            {
+                "value":"@integer(10,50)",
+                "value1":"@integer(0,100)",
+                "value2":"@integer(0,100)",
+                "value3":"@integer(0,100)",
+                "value4|1":["经济活跃度","法律问题","企业问题"],
+                "name":"联营企业"
+            },
+            {
+                "value":"@integer(10,50)",
+                "value1":"@integer(0,100)",
+                "value2":"@integer(0,100)",
+                "value3":"@integer(0,100)",
+                "value4|1":["经济活跃度","法律问题","企业问题"],
+                "name":"外商投资"
+            },
+            {
+                "value":"@integer(10,50)",
+                "value1":"@integer(0,100)",
+                "value2":"@integer(0,100)",
+                "value3":"@integer(0,100)",
+                "value4|1":["经济活跃度","法律问题","企业问题"],
+                "name":"其他企业"
+            }
+        ]
+    }
+})
+
+//僵尸企业统计分析页-僵尸企业成因分析
+
+Mock.mock('/zombie/analysis/getRensonAnalysis',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "seriesData":[
+            {
+                "value":[
+                    4300,
+                    10000,
+                    28000,
+                    35000,
+                    50000,
+                    19000
+                ],
+                "name":"1月"
+            },
+            {
+                "value":[
+                    4300,
+                    10000,
+                    28000,
+                    35000,
+                    50000,
+                    19000
+                ],
+                "name":"2月"
+            },
+            {
+                "value":[
+                    4300,
+                    10000,
+                    28000,
+                    35000,
+                    50000,
+                    19000
+                ],
+                "name":"3月"
+            },
+            {
+                "value":[
+                    6000,
+                    14000,
+                    28000,
+                    31000,
+                    42000,
+                    21000
+                ],
+                "name":"4月"
+            },
+            {
+                "value":[
+                    10000,
+                    19000,
+                    32000,
+                    33000,
+                    45000,
+                    24000
+                ],
+                "name":"5月"
+            },
+            {
+                "value":[
+                    8000,
+                    17000,
+                    30000,
+                    33000,
+                    45000,
+                    22000
+                ],
+                "name":"6月"
+            },
+            {
+                "value":[
+                    5000,
+                    14000,
+                    28000,
+                    31000,
+                    42000,
+                    21000
+                ],
+                "name":"7月"
+            },
+            {
+                "value":[
+                    1000,
+                    6400,
+                    900,
+                    19100,
+                    30200,
+                    10100
+                ],
+                "name":"8月"
+            },
+            {
+                "value":[
+                    2000,
+                    8400,
+                    900,
+                    10100,
+                    22200,
+                    21100
+                ],
+                "name":"9月"
+            },
+            {
+                "value":[
+                    5000,
+                    13000,
+                    27000,
+                    30000,
+                    40000,
+                    20000
+                ],
+                "name":"10月"
+            },
+            {
+                "value":[
+                    6000,
+                    14000,
+                    28000,
+                    31000,
+                    52000,
+                    21000
+                ],
+                "name":"11月"
+            },
+            {
+                "value":[
+                    7000,
+                    16000,
+                    38000,
+                    41000,
+                    52000,
+                    31000
+                ],
+                "name":"12月"
+            }]
+    }
+})
+
+//僵尸企业统计分析页-企业风险等级分布
+
+Mock.mock('/zombie/analysis/getLevelDistribute',{
+    "code":1,
+    "msg":"请求成功！",
+    "data":{
+        "seriesData|20":[
+            {
+                "value":"@integer(20,100)"
+            }
+        ]
+    }
+})
+
+//僵尸企业统计分析页-区域僵尸企业数量TOP10
+
+Mock.mock('/zombie/analysis/getRankTop',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "yAxisData":[
+            "北京",
+            "广东",
+            "上海",
+            "深圳",
+            "杭州",
+            "苏州",
+            "宁波",
+            "无锡",
+            "哈尔滨",
+            "长春"
+        ],
+        "seriesData":[
+            2132,
+            2131,
+            1622,
+            1344,
+            1226,
+            1124,
+            987,
+            973,
+            932,
+            891
+        ]
+    }
+})
+
+//僵尸企业详情页-僵尸企业雷达图
+
+Mock.mock('/zombie/details/getRaderData',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "percentdata":"5%",
+        "enterpriseType":"健康企业",
+        "valueArry":[
+            {
+                "name":"同地址企业个数",
+                "value":"4200"
+            },
+            {
+                "name":"地址变更次数",
+                "value":"22000"
+            },
+            {
+                "name":"名称变更次数",
+                "value":"24000"
+            },
+            {
+                "name":"是否地址无法连系",
+                "value":"@boolean"
+            },
+            {
+                "name":"有无公示年报",
+                "value|1":["有","无"]
+            },
+            {
+                "name":"是否隐瞒真实信息",
+                "value":"@boolean"
+            }
+        ]
+    }
+})
+
+//僵尸企业详情页-扫描企业详情
+
+Mock.mock('/zombie/details/getCompanyData',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "companyName":"@ctitle",
+        "companyPerson":"@cname",
+        "companyArea":"@province",
+        "companyDetail":"钢铁生产",
+        "companyAdress":"北京市石景山区石景山路首钢厂东门",
+        "companyType":"制造业",
+        "entId":"0",
+        "industryId":"0",
+        "areaId":"0",
+        "zombieRate":"@float(0,100)"
+    }
+})
+
+//僵尸企业-关注企业
+
+Mock.mock('/zombie/getAttention',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "errorCode":1
+    }
+})
+
+//僵尸企业-取消企业
+
+Mock.mock('/zombie/getUnfollow',{
+    "code":"1",
+    "msg":"描述信息",
+    "data":{
+        "errorCode":1
+    }
+})
+//僵尸企业-详情treeline
+
+Mock.mock('/zombie/details/getBranchData',{
+    "code":1,
+    "msg":"成功",
+    "data":{
+        "id":1,
+        "name":"@ctitle",
+        "group":-1,
+        "children":[
+            {
+                "id":2,
+                "name":"@ctitle",
+                "group":1,
+                "type":1
+            },
+            {
+                "id":3,
+                "name":"@ctitle",
+                "group":1,
+                "type":1
+            },
+            {
+                "id":4,
+                "name":"@ctitle",
+                "group":1,
+                "type":1
+            },
+            {
+                "id":5,
+                "name":"@ctitle",
+                "group":1,
+                "type":1
+            },
+            {
+                "id":6,
+                "name":"@ctitle",
+                "group":1,
+                "type":1
+            },
+            {
+                "id":7,
+                "name":"@ctitle",
+                "group":1,
+                "type":3
+            },
+            {
+                "id":8,
+                "name":"@ctitle",
+                "group":1,
+                "type":3
+            },
+            {
+                "id":9,
+                "name":"@ctitle",
+                "group":1,
+                "type":3
+            },
+            {
+                "id":10,
+                "name":"@ctitle",
+                "group":1,
+                "type":3
+            },
+            {
+                "id":11,
+                "name":"@ctitle",
+                "group":2,
+                "type":1
+            },
+            {
+                "id":12,
+                "name":"@ctitle",
+                "group":2,
+                "type":1
+            },
+            {
+                "id":13,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            },
+            {
+                "id":14,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            },
+            {
+                "id":15,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            },
+            {
+                "id":16,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            },
+            {
+                "id":17,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            },
+            {
+                "id":18,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            },
+            {
+                "id":19,
+                "name":"@ctitle",
+                "group":2,
+                "type":2
+            }
+        ]
+    }
+})
